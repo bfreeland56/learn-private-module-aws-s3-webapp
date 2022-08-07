@@ -11,8 +11,8 @@ provider "aws" {
   region = var.region
 }
 
-module "s3-webapp" {
-  source  = "app.terraform.io/bfree/s3-webapp/aws"
+module "s3-webapps" {
+  source  = "app.terraform.io/bfree/s3-webapps/aws"
   name   = var.name
   region = var.region
   prefix = var.prefix
@@ -65,7 +65,7 @@ resource "aws_s3_bucket_policy" "policy" {
 EOF
 }
 
-resource "aws_s3_object" "webapp" {
+resource "aws_s3_object" "webapps" {
   acl          = "public-read"
   key          = "index.html"
   bucket       = aws_s3_bucket.bucket.id
