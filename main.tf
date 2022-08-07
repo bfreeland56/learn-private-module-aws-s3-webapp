@@ -11,7 +11,15 @@ provider "aws" {
   region = var.region
 }
 
-resource "aws_s3_bucket" "bucket" {
+module "s3-webapp" {
+  source  = "app.terraform.io/bfree/s3-webapp/aws"
+  name   = var.name
+  region = var.region
+  prefix = var.prefix
+  version = "1.0.0"
+}
+
+  resource "aws_s3_bucket" "bucket" {
   bucket = "${var.prefix}-${var.name}"
 
   force_destroy = true
